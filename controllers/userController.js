@@ -90,7 +90,7 @@ exports.create_account = (req, res) => {
 
 	if (hasMissingAuthFields(req)) {
 		res.status(400).send({
-			status: responseStatus.FAILURE,
+			status: failureResponseMessage,
 			data: {
 				message: missingAuthFieldsMessage
 			}
@@ -144,7 +144,7 @@ exports.create_account = (req, res) => {
 					});  		
         	} else {
 				res.status(404).send({
-            		status: responseStatus.FAILURE,
+            		status: failureResponseMessage,
             		data: {
                 		message: userExistsMessage + username
             		}
@@ -153,7 +153,7 @@ exports.create_account = (req, res) => {
 			}
 		}).catch((err) => {
              res.status(500).json({
-                 status: responseStatus.ERROR,
+                 status: errorResponseMessage,
                  error_message: dbWriteErrorMessage
              });
          });
